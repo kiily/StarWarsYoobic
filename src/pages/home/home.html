@@ -1,14 +1,26 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content text-center >
+  <div class="logo">
+      <img src="../../assets/imgs/star_wars.png" width="200"alt="Logo">
+  </div>
+  <div text-center>
+    <h2>Sign In</h2>
+  </div> 
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <form [formGroup]="loginForm" ngSubmit="login()">
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email" name="email" placeholder="Email"><span class="fa fa-email"></span></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" formControlName="password" name="password" placeholder="Password"><span class="fa fa-lock"></span></ion-input>
+      </ion-item>
+    
+    
+
+  </form>
 </ion-content>
+
+
+
+
