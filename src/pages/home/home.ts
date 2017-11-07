@@ -14,6 +14,9 @@ export class HomePage {
     password: new FormControl('', Validators.required)
   });
 
+  //allow toggle between login and sign up; false login; true sign up
+  authToggle : boolean = false;
+
   constructor(public navCtrl: NavController) {
     
   }
