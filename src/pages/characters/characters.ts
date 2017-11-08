@@ -21,6 +21,7 @@ import { Observable } from 'rxjs/Observable';
 export class CharactersPage {
 
   characters : Character[]= [];
+  userId;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
   public charactersProvider : CharactersProvider, public authProvider : AuthProvider) {
@@ -34,11 +35,16 @@ export class CharactersPage {
       for(let character of characters){
         // let characterString = JSON.stringify(character);
 
-        let transformedCharacter = new Character(character.name, character.imageUrl,
-        character.description, character.detailedDescription, character.characterId);
+        let transformedCharacter = new Character(character['name'], character['imageUrl'],
+        character['description'], character['detailedDescription'], character['characterId']);
         this.characters.push(transformedCharacter);
 
       }
+    });
+
+    this.authProvider.getCurrentUID().subscribe( authState => {
+      this.userId = authState.uid;
+      console.log(this.userId);
     });
 
     
@@ -52,12 +58,23 @@ export class CharactersPage {
   }
 
   addToFavorites(character : Character){
-    this.charactersProvider.addToFavorites(character)
-    .valueChanges().subscribe( (favorites) => {
-      console.log(favorites);
-      return favorites;
-    });
+    //check whether it is already favorite - change the ion-icon accordingly
+    this.charactersProvider.getFavorites(this.userId).valueChanges()
+    .subscribe( favorites => {
+      //check whether character exists
+      for(let char of favorites){
+        if(char['characterId'] === character.characterId){
+          //character exists
+          console.log("error");
+          return null;
+        }
+      }
 
+      this.charactersProvider.addToFavorites(this.userId, character); 
+      console.log("called");
+      
+    });
+    
   }
 
  

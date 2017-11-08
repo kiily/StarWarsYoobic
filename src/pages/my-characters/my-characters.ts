@@ -1,4 +1,3 @@
-import { snapshotChanges } from 'angularfire2/database';
 import { AuthProvider } from './../../providers/auth/auth.provider';
 import { CharactersProvider } from './../../providers/characters/characters.provider';
 import { Component } from '@angular/core';
@@ -27,48 +26,24 @@ export class MyCharactersPage {
   }
 
   ionViewDidLoad() {
-    
-
-  // this.authProvider.getCurrentUID().subscribe( (authState) => {
-  //   this.userId= authState.uid;
-  //   console.log(this.userId);
-  //   this.charactersProvider.getFavorites(this.userId).valueChanges()
-  //   .subscribe( (favorites) => {
-  //    console.log(favorites);
-  //    for(let favorite of favorites){
-  //      // let characterString = JSON.stringify(character);
- 
-  //      let transformedCharacter = new Character(favorite.name, favorite.imageUrl,
-  //        favorite.description, favorite.detailedDescription, favorite.characterId);
-  //      this.myCharacters.push(transformedCharacter);
- 
-  //    }
-  //  });
-  //  });
-  //  console.log(this.userId);
-
 
    this.authProvider.getCurrentUID().subscribe( (authState) => {
     this.userId= authState.uid;
     console.log(this.userId);
-    this.charactersProvider.getFavorites(this.userId).snapshotChanges()
-    .subscribe( (changes) => {
-    console.log(changes);
+    this.charactersProvider.getFavorites(this.userId).valueChanges()
+    .subscribe( (characters) => {
+    console.log(characters);
 
-    for(let change of changes){
-      this.charactersProvider.getCharacterById(Number(change.key)).valueChanges()
-      .subscribe( (character) => {
-        console.log(character);
-        
-        let favCharacter =  new Character(character.name, character.imageUrl, character.description, character.detailedDescription
-        , character.characterId);
-
-        this.favorites.push(favCharacter);
-      })
+    for(let char of characters){
+    
+     let myChar = new Character(char['name'], char['imageUrl'], char['description'], char['detailedDescription'],
+    char['characterId'] );
+    this.favorites.push(myChar);
     }
-  })
+  });
   
    });
+  
   
    
  

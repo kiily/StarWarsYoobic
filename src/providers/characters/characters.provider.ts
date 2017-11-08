@@ -22,9 +22,18 @@ export class CharactersProvider {
     return this.afdb.list("/characters");
   }
 
-  addToFavorites(character : Character){
+  addToFavorites(userId, character : Character){
     // console.log(character);
-    return this.afdb.list("/users/favorites")
+    this.afdb.list("/users/"+userId+"/favorites").push(
+      {
+        characterId: character.characterId,
+        name: character.name,
+        imageUrl: character.imageUrl,
+        description: character.description,
+        detailedDescription: character.detailedDescription
+
+      }
+    )
   }
 
   getFavorites(userId){
@@ -33,5 +42,9 @@ export class CharactersProvider {
 
   getCharacterById(characterId : number){
     return this.afdb.object('/characters/'+characterId)
+  }
+
+  removeFromFavorites(characterId){
+    
   }
 }
