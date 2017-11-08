@@ -49,4 +49,8 @@ However, the torture Revan experienced at the hands of the Sith had splintered R
     });
   }
 
+  addToFavorites(){
+
+  }
+
 }

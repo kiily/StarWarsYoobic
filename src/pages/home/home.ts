@@ -15,6 +15,12 @@ export class HomePage {
     password: new FormControl('', Validators.required)
   });
 
+  signupForm : FormGroup = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    passwordRepeat: new FormControl('', Validators.required)
+  });
+
   //allow toggle between login and sign up; false login; true sign up
   authToggle : boolean = false;
 
@@ -33,6 +39,10 @@ export class HomePage {
   }
 
   signup(){
-    this.navCtrl.setRoot(CharactersPage);
+  
+  }
+
+  toggleAuth(){
+    this.authToggle = !this.authToggle;
   }
 }
