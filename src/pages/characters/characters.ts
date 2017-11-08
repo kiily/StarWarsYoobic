@@ -10,10 +10,10 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
 
 @IonicPage()
 @Component({
-  selector: 'page-missions',
-  templateUrl: 'missions.html',
+  selector: 'page-characters',
+  templateUrl: 'characters.html',
 })
-export class MissionsPage {
+export class CharactersPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl : MenuController) {
     menuCtrl.enable(true);

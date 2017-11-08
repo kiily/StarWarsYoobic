@@ -1,4 +1,4 @@
-import { MissionsPage } from '../pages/missions/missions';
+import { CharactersPage } from './../pages/characters/characters';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
   declarations: [
     MyApp,
     HomePage,
-    MissionsPage
+    CharactersPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { HomePage } from '../pages/home/home';
   entryComponents: [
     MyApp,
     HomePage,
-    MissionsPage
+    CharactersPage
   ],
   providers: [
     StatusBar,
