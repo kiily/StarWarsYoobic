@@ -1,0 +1,37 @@
+<!--
+  Generated template for the MyCharactersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar>
+       
+        <ion-buttons start>   
+                <button ion-button menuToggle>
+                  <ion-icon name="menu"></ion-icon>
+                </button>
+        </ion-buttons> 
+              
+        <ion-title>My Characters</ion-title>  
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  <ion-card *ngFor="let favorite of favorites">
+    <img [src]="favorite.imageUrl" height="300"/>
+    <ion-card-content>
+      <ion-card-title text-center>
+        <strong>{{favorite.name}}</strong>
+      </ion-card-title>
+      <div text-justify>
+           {{favorite.description}}
+      </div>
+
+    </ion-card-content>
+    </ion-card>
+    </ion-content>
+    

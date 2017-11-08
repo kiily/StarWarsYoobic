@@ -54,4 +54,9 @@ registerUser(user : User){
   logout(){
     return this.afAuth.auth.signOut();
   }
+
+  getCurrentUID(){
+    return this.afAuth.authState;
+        
+  }
 }

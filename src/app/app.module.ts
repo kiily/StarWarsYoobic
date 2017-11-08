@@ -1,3 +1,4 @@
+import { MyCharactersPage } from '../pages/my-characters/my-characters';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DetailsPage } from './../pages/details/details';
@@ -13,6 +14,7 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth.provider';
+import { CharactersProvider } from '../providers/characters/characters.provider';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AuthProvider } from '../providers/auth/auth.provider';
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    MyCharactersPage
+
   ],
   imports: [
     BrowserModule,
@@ -35,13 +39,15 @@ import { AuthProvider } from '../providers/auth/auth.provider';
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    MyCharactersPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    CharactersProvider
   ]
 })
 export class AppModule {}

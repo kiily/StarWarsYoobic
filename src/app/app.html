@@ -7,15 +7,15 @@
 
     <ion-content>
         <ion-list no-lines>
-            <ion-item padding active>
-                <ion-icon name="contacts"></ion-icon>
+            <ion-item padding menuClose (click)="goToCharactersPage()">
+                <ion-icon name="contacts" ></ion-icon>
                 Available Characters
             </ion-item>
             <ion-item padding>
                 <ion-icon name="images"></ion-icon>
                 Photos
             </ion-item>
-            <ion-item padding>
+            <ion-item padding menuClose (click)="goToMyCharactersPage()">
                 <ion-icon name="contact"></ion-icon>
                 My Characters
             </ion-item>
@@ -23,9 +23,9 @@
                 <ion-icon name="chatbubbles"></ion-icon>
                 Chat
             </ion-item>
-            <ion-item padding >
-                <button ion-button clear menuClose (click)="signout()"> <ion-icon name="log-out"></ion-icon>
-                    Sign Out</button>
+            <ion-item padding menuClose (click)="signout()">
+            <ion-icon name="log-out"></ion-icon>
+                    Sign Out
         </ion-item>
         </ion-list>
     </ion-content>
