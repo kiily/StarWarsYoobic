@@ -1,4 +1,3 @@
-import { HomePage } from './../home/home';
 import { DetailsPage } from '../details/details';
 import { Character } from '../../app/models/characters.model';
 import { Component } from '@angular/core';
