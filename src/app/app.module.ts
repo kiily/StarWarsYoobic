@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth.provider';
+import { CharactersProvider } from '../providers/characters/characters.provider';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AuthProvider } from '../providers/auth/auth.provider';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    CharactersProvider
   ]
 })
 export class AppModule {}
