@@ -1,7 +1,6 @@
 import { User } from '../../app/models/user.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -15,16 +14,16 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class AuthProvider {
 
   constructor(public afAuth: AngularFireAuth, public afdb : AngularFireDatabase) {
-    console.log('Hello AuthProvider Provider');
+  
   }
 
     /**
  * Takes an email and password and attempts to log in the user. It
  * returns a firebase promise of the type FirebaseAuthState.
  */
-  signin(email : string, password : string){
+  signin(user : User){
     //return promise
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
   }
 
 
