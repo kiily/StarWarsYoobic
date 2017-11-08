@@ -28,6 +28,10 @@
       </ion-card-content>
   </ion-card>
 
+  <ion-buttons *ngIf="authToggle"end>
+    <button ion-button clear (click)="resetPassword()">Forgot your password?</button>
+  </ion-buttons>
+  
   <ion-buttons>
       <button ion-button round color="dark" (click)="toggleAuth()">Sign Up</button>
       <button ion-button round type="submit" [disabled]="!loginForm.valid">Sign In</button>

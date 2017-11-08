@@ -1,3 +1,6 @@
+import { PhotosPage } from './../pages/photos/photos';
+import { ChatPage } from './../pages/chat/chat';
+import { ChatPage } from '../pages/chat/chat';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DetailsPage } from './../pages/details/details';
@@ -20,7 +23,9 @@ import { AuthProvider } from '../providers/auth/auth.provider';
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    ChatPage,
+    PhotosPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,9 @@ import { AuthProvider } from '../providers/auth/auth.provider';
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    ChatPage,
+    PhotosPage
   ],
   providers: [
     StatusBar,

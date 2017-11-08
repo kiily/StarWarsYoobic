@@ -83,6 +83,12 @@ export class HomePage {
 
   }
 
+  resetPassword(){
+    console.log("reset");
+    // this.authProvider.resetPassword().then( (response)){
+
+    // }
+  }
   toggleAuth() {
     this.authToggle = !this.authToggle;
   }
