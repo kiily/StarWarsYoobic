@@ -1,4 +1,6 @@
 
+
+
 <ion-content text-center >
   <div class="logo">
       <img src="../../assets/imgs/legends.jpg"  alt="Logo">
@@ -27,8 +29,8 @@
   </ion-card>
 
   <ion-buttons>
-      <button ion-button round (click)="toggleAuth()">Sign Up</button>
-      <button ion-button round color="dark" type="submit" [disabled]="!loginForm.valid">Sign In</button>
+      <button ion-button round color="dark" (click)="toggleAuth()">Sign Up</button>
+      <button ion-button round type="submit" [disabled]="!loginForm.valid">Sign In</button>
     </ion-buttons>
  
   </form>

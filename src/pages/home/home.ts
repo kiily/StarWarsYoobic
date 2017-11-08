@@ -21,9 +21,10 @@ export class HomePage {
     passwordRepeat: new FormControl('', Validators.required)
   });
 
-  //allow toggle between login and sign up; false login; true sign up
-  authToggle : boolean = false;
-
+  //allow toggle between login and sign up; true login; false sign up
+  authToggle : boolean = true;
+  rootPage:any = HomePage;
+  
   constructor(public navCtrl: NavController) {
     
   }
