@@ -1,3 +1,5 @@
+import { CharactersPage } from './../pages/characters/characters';
+import { MyCharactersPage } from './../pages/my-characters/my-characters';
 import { HomePage } from './../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
@@ -25,6 +27,13 @@ export class MyApp {
     this.nav.setRoot(HomePage);
   }
 
+  goToMyCharactersPage(){
+    this.nav.setRoot(MyCharactersPage);
+  }
+
+  goToCharactersPage(){
+    this.nav.setRoot(CharactersPage);
+  }
 
 }
 

@@ -1,3 +1,4 @@
+import { MyCharactersPage } from '../pages/my-characters/my-characters';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DetailsPage } from './../pages/details/details';
@@ -21,7 +22,9 @@ import { CharactersProvider } from '../providers/characters/characters.provider'
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    MyCharactersPage
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { CharactersProvider } from '../providers/characters/characters.provider'
     MyApp,
     HomePage,
     CharactersPage,
-    DetailsPage
+    DetailsPage,
+    MyCharactersPage
   ],
   providers: [
     StatusBar,

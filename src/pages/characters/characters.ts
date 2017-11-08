@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth.provider';
 import { CharactersProvider } from '../../providers/characters/characters.provider';
 import { DetailsPage } from '../details/details';
 import { Character } from '../../app/models/characters.model';
@@ -22,7 +23,7 @@ export class CharactersPage {
   characters : Character[]= [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public charactersProvider : CharactersProvider) {
+  public charactersProvider : CharactersProvider, public authProvider : AuthProvider) {
     
   }
 
@@ -31,6 +32,8 @@ export class CharactersPage {
     .subscribe( (characters) => {
       console.log(characters);
       for(let character of characters){
+        // let characterString = JSON.stringify(character);
+
         let transformedCharacter = new Character(character.name, character.imageUrl,
         character.description, character.detailedDescription, character.characterId);
         this.characters.push(transformedCharacter);
@@ -38,10 +41,8 @@ export class CharactersPage {
       }
     });
 
-    this.charactersProvider.getFavorites().valueChanges()
-    .subscribe((favorites) => {
-      console.log(favorites);
-    })
+    
+
   }
 
   toDetailsPage(character : Character){

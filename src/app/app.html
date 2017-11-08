@@ -8,14 +8,14 @@
     <ion-content>
         <ion-list no-lines>
             <ion-item padding active>
-                <ion-icon name="contacts"></ion-icon>
+                <ion-icon name="contacts" (click)="goToCharactersPage()"></ion-icon>
                 Available Characters
             </ion-item>
             <ion-item padding>
                 <ion-icon name="images"></ion-icon>
                 Photos
             </ion-item>
-            <ion-item padding>
+            <ion-item padding menuClose (click)="goToMyCharactersPage()">
                 <ion-icon name="contact"></ion-icon>
                 My Characters
             </ion-item>

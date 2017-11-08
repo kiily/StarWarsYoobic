@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { User } from '../../app/models/user.model';
 
 /*
   Generated class for the CharactersProvider provider.
@@ -26,4 +27,11 @@ export class CharactersProvider {
     return this.afdb.list("/users/favorites")
   }
 
+  getFavorites(userId){
+    return this.afdb.list("/users/"+userId+"/favorites");
+  }
+
+  getCharacterById(characterId : number){
+    return this.afdb.object('/characters/'+characterId)
+  }
 }
