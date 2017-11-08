@@ -14,7 +14,7 @@
               </button>
       </ion-buttons> 
             
-      <ion-title>Missions</ion-title>  
+      <ion-title>Characters</ion-title>  
   </ion-navbar>
 
 </ion-header>
@@ -24,18 +24,29 @@
 <ion-card *ngFor="let character of characters">
   <img [src]="character.imageUrl"/>
   <ion-card-content>
-    <ion-card-title>
-      {{character.name}}
+    <ion-card-title text-center>
+      <strong>{{character.name}}</strong>
     </ion-card-title>
-    <p>
-      {{character.description}}
-    </p>
+    <div text-justify>
+         {{character.description}}
+    </div>
+    
 
-
-    <ion-buttons start>
-      <button ion-button clear><ion-icon name="star"></ion-icon> Favorite</button>
-      <button ion-button clear><ion-icon name="information-circle"></ion-icon> Details</button>
-    </ion-buttons>
+<ion-grid>
+    <ion-row>
+        <ion-col>
+        <button ion-button icon-left clear><ion-icon name="star"></ion-icon>
+          <div>Favorite</div>
+        </button>
+        </ion-col>
+        <ion-col>
+            <button ion-button icon-left clear (click)="toDetailsPage(character)"><ion-icon name="information-circle"></ion-icon>
+              <div>Details</div>
+            </button>    
+        </ion-col>
+      </ion-row>
+</ion-grid>
+    
   </ion-card-content>
 
 </ion-card>

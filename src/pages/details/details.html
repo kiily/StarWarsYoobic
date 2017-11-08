@@ -14,5 +14,23 @@
 
 
 <ion-content padding>
+  <ion-grid padding>
+    <ion-row>
+
+      <ion-card>
+        <img [src]="character.imageUrl" height="250" />
+        <div class="card-title"><h1 ion-text color="light">{{character.name}}</h1></div>
+      </ion-card>
+      
+    </ion-row>
+   
+    <ion-row>
+ <div ion-text text-justify color="light">
+        {{character.detailedDescription}}
+      </div>
+    </ion-row>
+  </ion-grid>
+
+  
 
 </ion-content>
