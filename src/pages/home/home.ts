@@ -1,3 +1,4 @@
+import { MissionsPage } from '../missions/missions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -14,6 +15,9 @@ export class HomePage {
     password: new FormControl('', Validators.required)
   });
 
+  //allow toggle between login and sign up; false login; true sign up
+  authToggle : boolean = false;
+
   constructor(public navCtrl: NavController) {
     
   }
@@ -25,6 +29,10 @@ export class HomePage {
 
     let user = new User(email, password);
     console.log(user);
+    this.navCtrl.setRoot(MissionsPage);
   }
 
+  signup(){
+    this.navCtrl.setRoot(MissionsPage);
+  }
 }
