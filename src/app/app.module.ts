@@ -1,3 +1,6 @@
+
+import { PhotosPage } from './../pages/photos/photos';
+import { ChatPage } from './../pages/chat/chat';
 import { MyCharactersPage } from '../pages/my-characters/my-characters';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -23,6 +26,8 @@ import { CharactersProvider } from '../providers/characters/characters.provider'
     HomePage,
     CharactersPage,
     DetailsPage,
+    ChatPage,
+    PhotosPage,
     MyCharactersPage
 
   ],
@@ -40,7 +45,10 @@ import { CharactersProvider } from '../providers/characters/characters.provider'
     HomePage,
     CharactersPage,
     DetailsPage,
+    ChatPage,
+    PhotosPage,
     MyCharactersPage
+
   ],
   providers: [
     StatusBar,
