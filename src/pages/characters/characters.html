@@ -21,5 +21,22 @@
 
 
 <ion-content padding>
-<p>hey</p>
+<ion-card *ngFor="let character of characters">
+  <img [src]="character.imageUrl"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{character.name}}
+    </ion-card-title>
+    <p>
+      {{character.description}}
+    </p>
+
+
+    <ion-buttons start>
+      <button ion-button clear><ion-icon name="star"></ion-icon> Favorite</button>
+      <button ion-button clear><ion-icon name="information-circle"></ion-icon> Details</button>
+    </ion-buttons>
+  </ion-card-content>
+
+</ion-card>
 </ion-content>
