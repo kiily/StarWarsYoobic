@@ -1,3 +1,4 @@
+import { MissionsPage } from '../missions/missions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -28,6 +29,10 @@ export class HomePage {
 
     let user = new User(email, password);
     console.log(user);
+    this.navCtrl.setRoot(MissionsPage);
   }
 
+  signup(){
+    this.navCtrl.setRoot(MissionsPage);
+  }
 }
