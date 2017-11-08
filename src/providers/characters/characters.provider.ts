@@ -44,7 +44,7 @@ export class CharactersProvider {
     return this.afdb.object('/characters/'+characterId)
   }
 
-  removeFromFavorites(characterId){
-    
+  removeFromFavorites(userId, characterId){
+    return this.afdb.object('/users/'+userId+'/favorites/'+characterId);
   }
 }
