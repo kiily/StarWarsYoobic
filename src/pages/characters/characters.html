@@ -14,12 +14,40 @@
               </button>
       </ion-buttons> 
             
-      <ion-title>Missions</ion-title>  
+      <ion-title>Characters</ion-title>  
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<p>hey</p>
+<ion-card *ngFor="let character of characters">
+  <img [src]="character.imageUrl"/>
+  <ion-card-content>
+    <ion-card-title text-center>
+      <strong>{{character.name}}</strong>
+    </ion-card-title>
+    <div text-justify>
+         {{character.description}}
+    </div>
+    
+
+<ion-grid>
+    <ion-row>
+        <ion-col>
+        <button ion-button icon-left clear><ion-icon name="star"></ion-icon>
+          <div>Favorite</div>
+        </button>
+        </ion-col>
+        <ion-col>
+            <button ion-button icon-left clear (click)="toDetailsPage(character)"><ion-icon name="information-circle"></ion-icon>
+              <div>Details</div>
+            </button>    
+        </ion-col>
+      </ion-row>
+</ion-grid>
+    
+  </ion-card-content>
+
+</ion-card>
 </ion-content>

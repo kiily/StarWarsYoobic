@@ -1,3 +1,4 @@
+import { DetailsPage } from './../pages/details/details';
 import { CharactersPage } from './../pages/characters/characters';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +14,8 @@ import { HomePage } from '../pages/home/home';
   declarations: [
     MyApp,
     HomePage,
-    CharactersPage
+    CharactersPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { HomePage } from '../pages/home/home';
   entryComponents: [
     MyApp,
     HomePage,
-    CharactersPage
+    CharactersPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,

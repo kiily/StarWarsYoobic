@@ -15,9 +15,16 @@ export class HomePage {
     password: new FormControl('', Validators.required)
   });
 
-  //allow toggle between login and sign up; false login; true sign up
-  authToggle : boolean = false;
+  signupForm : FormGroup = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    passwordRepeat: new FormControl('', Validators.required)
+  });
 
+  //allow toggle between login and sign up; true login; false sign up
+  authToggle : boolean = true;
+  rootPage:any = HomePage;
+  
   constructor(public navCtrl: NavController) {
     
   }
@@ -33,6 +40,10 @@ export class HomePage {
   }
 
   signup(){
-    this.navCtrl.setRoot(CharactersPage);
+  
+  }
+
+  toggleAuth(){
+    this.authToggle = !this.authToggle;
   }
 }
