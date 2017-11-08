@@ -1,4 +1,6 @@
-import { CharactersPage } from '../characters/characters';
+import { AuthValidator } from '../../providers/auth/auth.validator';
+import { CharactersPage } from './../characters/characters';
+import { AuthProvider } from '../../providers/auth/auth.provider';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -25,7 +27,8 @@ export class HomePage {
   authToggle : boolean = true;
   rootPage:any = HomePage;
   
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public authProvider : AuthProvider,
+  public authValidator : AuthValidator) {
     
   }
 
@@ -40,6 +43,30 @@ export class HomePage {
   }
 
   signup(){
+
+    let email = this.signupForm.controls.email.value;
+    let password = this.signupForm.controls.password.value;
+    let passwordRepeat = this.signupForm.controls.passwordRepeat.value;
+
+    if(password == passwordRepeat){
+      //valid
+      let user = new User(email, password);
+      this.authProvider.signup(user)
+      .then( authState => {
+        //extract the ID of the newly created user
+        user.userId = authState.uid;
+        //register the user in the db
+        this.authProvider.registerUser(user);
+        this.signupForm.reset();
+        this.navCtrl.setRoot(CharactersPage);
+      }).catch(error => {
+        //handle error
+        console.log(error);
+        this.authValidator.handleErrors(error);
+      });
+    }
+
+    //cannot signup
   
   }
 
