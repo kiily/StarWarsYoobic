@@ -40,7 +40,6 @@ export class HomePage {
 
     this.authProvider.signin(user)
       .then(authState => {
-        console.log(authState);
         this.loginForm.reset();
         this.navCtrl.setRoot(CharactersPage);
       }).catch(error => {

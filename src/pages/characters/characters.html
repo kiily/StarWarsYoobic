@@ -22,7 +22,7 @@
 
 <ion-content padding>
 <ion-card *ngFor="let character of characters">
-  <img [src]="character.imageUrl"/>
+  <img [src]="character.imageUrl" height="300"/>
   <ion-card-content>
     <ion-card-title text-center>
       <strong>{{character.name}}</strong>
@@ -35,7 +35,7 @@
 <ion-grid>
     <ion-row>
         <ion-col>
-        <button ion-button icon-left clear><ion-icon name="star"></ion-icon>
+        <button ion-button icon-left clear (click)="addToFavorites(character)"><ion-icon name="star"></ion-icon>
           <div>Favorite</div>
         </button>
         </ion-col>
