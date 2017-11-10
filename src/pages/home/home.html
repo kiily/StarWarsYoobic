@@ -3,7 +3,7 @@
 
 <ion-content text-center >
   <div class="logo">
-      <img src="../../assets/imgs/legends.jpg"  alt="Logo">
+      <img src="assets/imgs/legends.jpg"  alt="Logo">
   </div>
   <div text-center>
     <h2 *ngIf="authToggle" ion-text color="light">Sign In</h2>
@@ -32,7 +32,7 @@
     <button ion-button clear (click)="resetPassword()">Forgot your password?</button>
   </ion-buttons>
   
-  <ion-buttons>
+  <ion-buttons >
       <button ion-button round color="dark" (click)="toggleAuth()">Sign Up</button>
       <button ion-button round type="submit" [disabled]="!loginForm.valid">Sign In</button>
     </ion-buttons>
@@ -70,7 +70,7 @@
 
   <br>
   <div class="logo">
-      <img src="../../assets/imgs/star_wars.png" width="200" alt="Logo">
+      <img src="assets/imgs/star_wars.png" width="200" alt="Logo">
   </div>
   <div text-center>
       <h5 ion-text color="light">Choose your side... November 2017.</h5>
