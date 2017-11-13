@@ -21,7 +21,7 @@
 
 
 <ion-content padding>
-<ion-card *ngFor="let character of characters">
+<!-- <ion-card *ngFor="let character of characters">
   <img [src]="character.imageUrl" height="300"/>
   <ion-card-content>
     <ion-card-title text-center>
@@ -49,5 +49,6 @@
     
   </ion-card-content>
 
-</ion-card>
+</ion-card> -->
+<character-card (change)="toDetailsPage($event)" [userId] ="userId" [characters] = "characters"></character-card>
 </ion-content>

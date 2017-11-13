@@ -51,31 +51,12 @@ export class CharactersPage {
 
   }
 
-  toDetailsPage(character : Character){
+  toDetailsPage(char : Character){
     this.navCtrl.push(DetailsPage, {
-      character: character
+      character: char
     });
   }
 
-  addToFavorites(character : Character){
-    //check whether it is already favorite - change the ion-icon accordingly
-    this.charactersProvider.getFavorites(this.userId).valueChanges()
-    .subscribe( favorites => {
-      //check whether character exists
-      for(let char of favorites){
-        if(char['characterId'] === character.characterId){
-          //character exists
-          console.log("error");
-          return null;
-        }
-      }
-
-      this.charactersProvider.addToFavorites(this.userId, character); 
-      console.log("called");
-      
-    });
-    
-  }
 
  
 
