@@ -29,22 +29,13 @@ export class CharactersPage {
   }
 
   ionViewDidLoad() {
-   this.charactersProvider.getCharacters().valueChanges()
-    .subscribe( (characters) => {
-      console.log(characters);
-      for(let character of characters){
-        // let characterString = JSON.stringify(character);
-
-        let transformedCharacter = new Character(character['name'], character['imageUrl'],
-        character['description'], character['detailedDescription'], character['characterId']);
-        this.characters.push(transformedCharacter);
-
-      }
+   this.charactersProvider.getCharacters()
+       .subscribe( (characters) => {
+         this.characters = characters;
     });
 
     this.authProvider.getCurrentUID().subscribe( authState => {
       this.userId = authState.uid;
-      console.log(this.userId);
     });
 
     

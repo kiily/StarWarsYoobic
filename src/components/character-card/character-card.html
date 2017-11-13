@@ -13,8 +13,11 @@
   <ion-grid>
       <ion-row>
           <ion-col>
-          <button ion-button icon-left clear (click)="addToFavorites(character)"><ion-icon name="star"></ion-icon>
+          <button *ngIf="!favorites" ion-button icon-left clear (click)="addToFavorites(character)"><ion-icon name="star"></ion-icon>
             <div>Favorite</div>
+          </button>
+          <button *ngIf="favorites" ion-button icon-left clear (click)="removeFromFavorites(character)"><ion-icon name="star"></ion-icon>
+            <div>Remove From Favorites</div>
           </button>
           </ion-col>
           <ion-col>

@@ -21,34 +21,5 @@
 
 
 <ion-content padding>
-<!-- <ion-card *ngFor="let character of characters">
-  <img [src]="character.imageUrl" height="300"/>
-  <ion-card-content>
-    <ion-card-title text-center>
-      <strong>{{character.name}}</strong>
-    </ion-card-title>
-    <div text-justify>
-         {{character.description}}
-    </div>
-    
-
-<ion-grid>
-    <ion-row>
-        <ion-col>
-        <button ion-button icon-left clear (click)="addToFavorites(character)"><ion-icon name="star"></ion-icon>
-          <div>Favorite</div>
-        </button>
-        </ion-col>
-        <ion-col>
-            <button ion-button icon-left clear (click)="toDetailsPage(character)"><ion-icon name="information-circle"></ion-icon>
-              <div>Details</div>
-            </button>    
-        </ion-col>
-      </ion-row>
-</ion-grid>
-    
-  </ion-card-content>
-
-</ion-card> -->
 <character-card (change)="toDetailsPage($event)" [userId] ="userId" [characters] = "characters"></character-card>
 </ion-content>

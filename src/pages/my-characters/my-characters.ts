@@ -30,9 +30,8 @@ export class MyCharactersPage {
    this.authProvider.getCurrentUID().subscribe( (authState) => {
     this.userId= authState.uid;
     console.log(this.userId);
-    this.charactersProvider.getFavorites(this.userId).valueChanges()
+    this.charactersProvider.getFavorites(this.userId)
     .subscribe( (characters) => {
-    console.log(characters);
 
     for(let char of characters){
     
