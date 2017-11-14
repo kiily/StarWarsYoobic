@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Observable';
 export class CharactersPage {
 
   characters : Character[]= [];
-  userId;
+  userId : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
   public charactersProvider : CharactersProvider, public authProvider : AuthProvider) {
@@ -29,53 +29,24 @@ export class CharactersPage {
   }
 
   ionViewDidLoad() {
-   this.charactersProvider.getCharacters().valueChanges()
-    .subscribe( (characters) => {
-      console.log(characters);
-      for(let character of characters){
-        // let characterString = JSON.stringify(character);
-
-        let transformedCharacter = new Character(character['name'], character['imageUrl'],
-        character['description'], character['detailedDescription'], character['characterId']);
-        this.characters.push(transformedCharacter);
-
-      }
+   this.charactersProvider.getCharacters()
+       .subscribe( (characters) => {
+         this.characters = characters;
+         
     });
 
     this.authProvider.getCurrentUID().subscribe( authState => {
       this.userId = authState.uid;
-      console.log(this.userId);
     });
-
-    
 
   }
 
-  toDetailsPage(character : Character){
+  toDetailsPage(char : Character){
     this.navCtrl.push(DetailsPage, {
-      character: character
+      character: char
     });
   }
 
-  addToFavorites(character : Character){
-    //check whether it is already favorite - change the ion-icon accordingly
-    this.charactersProvider.getFavorites(this.userId).valueChanges()
-    .subscribe( favorites => {
-      //check whether character exists
-      for(let char of favorites){
-        if(char['characterId'] === character.characterId){
-          //character exists
-          console.log("error");
-          return null;
-        }
-      }
-
-      this.charactersProvider.addToFavorites(this.userId, character); 
-      console.log("called");
-      
-    });
-    
-  }
 
  
 

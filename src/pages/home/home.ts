@@ -40,6 +40,8 @@ export class HomePage {
 
     this.authProvider.signin(user)
       .then(authState => {
+        //store userId locally
+        localStorage.setItem('userId', authState.uid);
         this.loginForm.reset();
         this.navCtrl.setRoot(CharactersPage);
       }).catch(error => {

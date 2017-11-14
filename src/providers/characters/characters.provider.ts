@@ -1,9 +1,11 @@
+import { AuthProvider } from '../auth/auth.provider';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireList } from 'angularfire2/database/interfaces';
 import { Character } from './../../app/models/characters.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { User } from '../../app/models/user.model';
 
 /*
   Generated class for the CharactersProvider provider.
@@ -14,37 +16,97 @@ import { User } from '../../app/models/user.model';
 @Injectable()
 export class CharactersProvider {
 
-  constructor(public afdb: AngularFireDatabase) {
-   
+  charactersRef: AngularFireList<Character>;
+  favoritesRef: AngularFireList<Character>;
+
+  favorites: Observable<Character[]>;
+  characters: Observable<Character[]>;
+
+  //track the current user
+  userId: string;
+  constructor(public afdb: AngularFireDatabase, private authProvider: AuthProvider) {
+
+    this.userId = localStorage.getItem('userId');
+    this.favoritesRef = this.afdb.list("/users/" + this.userId + "/favorites");
+
+
+    this.favorites = this.favoritesRef.snapshotChanges()
+      .map(changes => {
+        return changes.map(c => {
+          let key = c.payload.key;
+          let favChar = c.payload.val();
+          
+          let transformed = new Character(favChar['name'], favChar['imageUrl'], favChar['description'],
+        favChar['detailedDescription']);
+          transformed.favoriteId = key;
+          console.log(transformed)
+          return transformed;
+        });
+      });
+
+    this.charactersRef = afdb.list('/characters');
+
+
+
+    //use snapshot changes to also extract and store the key
+    this.characters = this.charactersRef.snapshotChanges()
+      .map(changes => {
+        return changes.map(
+          c => {
+            let key = c.payload.key;
+            let char = c.payload.val();
+           
+            return char;
+          }
+        )
+      });
+
+
   }
 
-  getCharacters(){
-    return this.afdb.list("/characters");
+  getCharacters() {
+    return this.characters;
   }
 
-  addToFavorites(userId, character : Character){
-    // console.log(character);
-    this.afdb.list("/users/"+userId+"/favorites").push(
-      {
-        characterId: character.characterId,
-        name: character.name,
-        imageUrl: character.imageUrl,
-        description: character.description,
-        detailedDescription: character.detailedDescription
 
+  addToFavorites(userId, character: Character) {
+
+    this.favoritesRef.push({
+      characterId: character.characterId,
+      name: character.name,
+      imageUrl: character.imageUrl,
+      description: character.description,
+      detailedDescription: character.detailedDescription
+
+    });
+
+  }
+
+  getFavorites() {
+    return this.favorites;
+
+  }
+
+  // getCharacterById(characterId: number) {
+  //   return this.afdb.object('/characters/' + characterId)
+  // }
+
+  removeFromFavorites(favoriteId : string) {
+    console.log(favoriteId)
+    this.favoritesRef.remove(favoriteId);
+  }
+
+  isFavorite(character: Character, favorites: Character[]) {
+
+    for(let favorite of favorites){
+      if(favorite.characterId == character.characterId){
+        //already favorite
+        return true;
       }
-    )
+    }
+    //if the character is not in favorites
+    return false;
+
   }
 
-  getFavorites(userId){
-    return this.afdb.list("/users/"+userId+"/favorites");
-  }
-
-  getCharacterById(characterId : number){
-    return this.afdb.object('/characters/'+characterId)
-  }
-
-  removeFromFavorites(userId, characterId){
-    return this.afdb.object('/users/'+userId+'/favorites/'+characterId);
-  }
 }

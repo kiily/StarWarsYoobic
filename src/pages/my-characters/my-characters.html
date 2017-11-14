@@ -21,17 +21,7 @@
   
   
   <ion-content padding>
-  <ion-card *ngFor="let favorite of favorites">
-    <img [src]="favorite.imageUrl" height="300"/>
-    <ion-card-content>
-      <ion-card-title text-center>
-        <strong>{{favorite.name}}</strong>
-      </ion-card-title>
-      <div text-justify>
-           {{favorite.description}}
-      </div>
+    <character-card [userId]="userId" [isFavorite]="true" [characters]="favorites" ></character-card>
 
-    </ion-card-content>
-    </ion-card>
     </ion-content>
     

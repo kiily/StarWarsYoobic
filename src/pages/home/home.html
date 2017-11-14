@@ -6,8 +6,8 @@
       <img src="assets/imgs/legends.jpg"  alt="Logo">
   </div>
   <div text-center>
-    <h2 *ngIf="authToggle" ion-text color="light">Sign In</h2>
-    <h2 *ngIf="!authToggle" ion-text color="light">Sign Up</h2>
+    <h2 *ngIf="authToggle" ion-text color="star-wars">Sign In</h2>
+    <h2 *ngIf="!authToggle" ion-text color="star-wars">Sign Up</h2>
   </div> 
 
    <form [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="authToggle">
