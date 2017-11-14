@@ -32,6 +32,9 @@ export class MyCharactersPage {
     .subscribe( (favorites) => {
      
     this.favorites = favorites;
+    for(let fav of favorites){
+      console.log(fav);
+    }
       
   });
   

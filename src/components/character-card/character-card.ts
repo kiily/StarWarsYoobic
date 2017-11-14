@@ -48,8 +48,6 @@ ngOnInit(){
   
   //Add a character to the favorites list
   addToFavorites(character : Character){
-    console.log(character);
-    console.log(this.favorites)
     
    if(!this.charactersProvider.isFavorite(character, this.favorites)){
     
@@ -63,8 +61,8 @@ ngOnInit(){
   }
 
 
-  removeFromFavorites(char : Character){
-    this.charactersProvider.removeFromFavorites(this.userId, char.characterId)
+  removeFromFavorites(favoriteId : string){
+    this.charactersProvider.removeFromFavorites(favoriteId);
   }
 
   

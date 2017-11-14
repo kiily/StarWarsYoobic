@@ -35,7 +35,12 @@ export class CharactersProvider {
         return changes.map(c => {
           let key = c.payload.key;
           let favChar = c.payload.val();
-          return favChar;
+          
+          let transformed = new Character(favChar['name'], favChar['imageUrl'], favChar['description'],
+        favChar['detailedDescription']);
+          transformed.favoriteId = key;
+          console.log(transformed)
+          return transformed;
         });
       });
 
@@ -50,6 +55,7 @@ export class CharactersProvider {
           c => {
             let key = c.payload.key;
             let char = c.payload.val();
+           
             return char;
           }
         )
@@ -81,12 +87,13 @@ export class CharactersProvider {
 
   }
 
-  getCharacterById(characterId: number) {
-    return this.afdb.object('/characters/' + characterId)
-  }
+  // getCharacterById(characterId: number) {
+  //   return this.afdb.object('/characters/' + characterId)
+  // }
 
-  removeFromFavorites(userId, characterId) {
-    return this.afdb.object('/users/' + userId + '/favorites/' + characterId);
+  removeFromFavorites(favoriteId : string) {
+    console.log(favoriteId)
+    this.favoritesRef.remove(favoriteId);
   }
 
   isFavorite(character: Character, favorites: Character[]) {
@@ -94,7 +101,6 @@ export class CharactersProvider {
     for(let favorite of favorites){
       if(favorite.characterId == character.characterId){
         //already favorite
-        console.log("already");
         return true;
       }
     }

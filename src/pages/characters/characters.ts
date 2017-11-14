@@ -32,7 +32,7 @@ export class CharactersPage {
    this.charactersProvider.getCharacters()
        .subscribe( (characters) => {
          this.characters = characters;
-         console.log(this.characters);
+         
     });
 
     this.authProvider.getCurrentUID().subscribe( authState => {
