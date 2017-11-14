@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Observable';
 export class CharactersPage {
 
   characters : Character[]= [];
-  userId;
+  userId : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
   public charactersProvider : CharactersProvider, public authProvider : AuthProvider) {
@@ -32,13 +32,12 @@ export class CharactersPage {
    this.charactersProvider.getCharacters()
        .subscribe( (characters) => {
          this.characters = characters;
+         console.log(this.characters);
     });
 
     this.authProvider.getCurrentUID().subscribe( authState => {
       this.userId = authState.uid;
     });
-
-    
 
   }
 

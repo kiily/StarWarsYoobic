@@ -1,5 +1,5 @@
 import { CharactersProvider } from '../../providers/characters/characters.provider';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Character } from '../../app/models/characters.model';
 
 /**
@@ -12,49 +12,52 @@ import { Character } from '../../app/models/characters.model';
   selector: 'character-card',
   templateUrl: 'character-card.html'
 })
-export class CharacterCardComponent {
+export class CharacterCardComponent implements OnInit {
 
   @Input() characters : Character[];
-  @Input() favorites : boolean = false;
+  @Input() isFavorite : boolean = false;
+  //NOt necessary if fetched from local storage; change this in another iteration
   @Input() userId : string;
   @Output('change') change = new EventEmitter();
 
+  
+  favorites : Character[]
   constructor(private charactersProvider : CharactersProvider) {
-    
+  
   }
 
-  ionViewDidLoad(){
-    if(!(this.characters.length >0 )){
-      this.charactersProvider.getCharacters().subscribe( characters => {
-        this.characters = characters;
+ngOnInit(){
+   //If the favorites array is not set; i.e. the user is in the Characters page;
+    //then get the favorites to be able to pass them for comparison to check whether they exist or not
+    if(this.favorites ==  null){
+      this.charactersProvider.getFavorites().subscribe( favorites => {
+        this.favorites = favorites;
       });
     }
-  }
 
+  
+}
+
+
+  //Emit the change that occurs when the user presses the details button
   seeDetails(char : Character){
     this.change.emit(char);
   }
 
   
+  //Add a character to the favorites list
   addToFavorites(character : Character){
-    //check whether it is already favorite - change the ion-icon accordingly
-    this.charactersProvider.getFavorites()
-    .subscribe( favorites => {
-      //check whether character exists
-      console.log("favorites");
-      console.log(favorites);
-    let isFavorite = this.charactersProvider.isFavorite(character);
-   if(isFavorite){
+    console.log(character);
+    
+   if(!this.charactersProvider.isFavorite(character, this.favorites)){
+    
     this.charactersProvider.addToFavorites(this.userId, character); 
-    console.log("gere");
+    console.log("added");
+   
    }else{
      //already favorite
      console.log("already favorite")
-   }
-     
-      
-    });
-    
+   }   
   }
 
 

@@ -22,29 +22,19 @@ export class MyCharactersPage {
   userId;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public charactersProvider : CharactersProvider, public authProvider : AuthProvider) {
+  public charactersProvider : CharactersProvider) {
   }
 
   ionViewDidLoad() {
 
-   this.authProvider.getCurrentUID().subscribe( (authState) => {
-    this.userId= authState.uid;
-    console.log(this.userId);
-    this.charactersProvider.getFavorites(this.userId)
-    .subscribe( (characters) => {
-
-    for(let char of characters){
-    
-     let myChar = new Character(char['name'], char['imageUrl'], char['description'], char['detailedDescription'],
-    char['characterId'] );
-    this.favorites.push(myChar);
-    }
+  
+    this.charactersProvider.getFavorites()
+    .subscribe( (favorites) => {
+     
+    this.favorites = favorites;
+      
   });
   
-   });
-  
-  
-   
  
     
   }
