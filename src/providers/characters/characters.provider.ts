@@ -91,12 +91,14 @@ export class CharactersProvider {
 
   isFavorite(character: Character, favorites: Character[]) {
 
-
-    if (favorites.indexOf(character) > 0) {
-      //character is already saved as a favorite
-      return true;
+    for(let favorite of favorites){
+      if(favorite.characterId == character.characterId){
+        //already favorite
+        console.log("already");
+        return true;
+      }
     }
-    //if the character has not been found in the favorites
+    //if the character is not in favorites
     return false;
 
   }

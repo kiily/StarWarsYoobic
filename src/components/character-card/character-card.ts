@@ -21,7 +21,8 @@ export class CharacterCardComponent implements OnInit {
   @Output('change') change = new EventEmitter();
 
   
-  favorites : Character[]
+  favorites : Character[];
+
   constructor(private charactersProvider : CharactersProvider) {
   
   }
@@ -48,6 +49,7 @@ ngOnInit(){
   //Add a character to the favorites list
   addToFavorites(character : Character){
     console.log(character);
+    console.log(this.favorites)
     
    if(!this.charactersProvider.isFavorite(character, this.favorites)){
     
